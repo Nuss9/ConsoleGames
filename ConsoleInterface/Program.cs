@@ -1,4 +1,5 @@
 ﻿using System;
+using GamesLibrary;
 
 namespace ConsoleInterface
 {
@@ -6,7 +7,7 @@ namespace ConsoleInterface
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+			Menus.MainMenu();
         }
     }
 }
