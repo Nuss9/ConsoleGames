@@ -50,5 +50,19 @@ namespace GamesLibrary
 
 			Assert.Equal(expected, result);
 		}
+
+		[Theory]
+		[InlineData(Weapon.Rock)]
+		[InlineData(Weapon.Paper)]
+		[InlineData(Weapon.Scissors)]
+		public void WhenNoneFightsAnything_ItShouldReturnAnything(Weapon computerWeapon)
+		{
+			RockPaperScissors game = new RockPaperScissors();
+			var expected = computerWeapon;
+			
+			var result = game.Fight(Weapon.None, computerWeapon);
+
+			Assert.Equal(expected, result);
+		}
 	}
 }
