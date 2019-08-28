@@ -2,9 +2,9 @@ namespace GamesLibrary
 {
 	public enum Weapon
 	{
-		None,
-		Rock, 
-		Paper, 
-		Scissors
-	}
+		Rock,
+		Paper,
+		Scissors,
+        None
+    }
 }
