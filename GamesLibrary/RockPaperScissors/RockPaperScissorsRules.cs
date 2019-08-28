@@ -1,22 +1,53 @@
-using System;
+using GamesLibrary.RockPaperScissors;
 
 namespace GamesLibrary
 {
 	public class RockPaperScissorsRules
 	{
-		public Weapon Fight(Weapon weaponPlayer, Weapon weaponComputer)
+		public Weapon Fight(Weapon playerWeapon, Weapon computerWeapon)
 		{
-			if(weaponPlayer == Weapon.None) {
-				return weaponComputer;
-			} else if(weaponPlayer == Weapon.Rock && weaponComputer == Weapon.Scissors) {
-				return Weapon.Rock;
-			} else if (weaponPlayer == Weapon.Paper && weaponComputer == Weapon.Scissors) {
-				return Weapon.Scissors;
-			} else if (weaponPlayer == Weapon.Rock && weaponComputer == Weapon.Paper) {
-				return Weapon.Paper;
-			} else {
-				return Weapon.None;
-			}
+            if (playerWeapon == Weapon.None) {
+                return computerWeapon;
+            }
+
+            if (playerWeapon == computerWeapon) {
+                return Weapon.None;
+            }
+
+            if (playerWeapon == Weapon.Rock) {
+                if (computerWeapon == Weapon.Paper) {
+                    return Weapon.Paper;
+                } else {
+                    return Weapon.Rock;
+                }
+            }
+
+            if (playerWeapon == Weapon.Paper)
+            {
+                if (computerWeapon == Weapon.Rock)
+                {
+                    return Weapon.Paper;
+                }
+                else
+                {
+                    return Weapon.Scissors;
+                }
+            }
+
+            if (playerWeapon == Weapon.Scissors)
+            {
+                if (computerWeapon == Weapon.Paper)
+                {
+                    return Weapon.Scissors;
+                }
+                else
+                {
+                    return Weapon.Rock;
+                }
+            }
+
+            // Should not be reached
+            return Weapon.None;
 		}
 	}
 }
