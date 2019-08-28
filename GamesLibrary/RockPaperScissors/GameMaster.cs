@@ -1,43 +1,54 @@
 ﻿using System;
-using GamesLibrary;
+using GamesLibrary.RockPaperScissors;
 
-namespace GamesLibrary.RockPaperScissors
+namespace GamesLibrary
 {
-    public class GameMaster : IGameMaster
-    {
-        public GameMaster()
-        {
-            RockPaperScissors game = new RockPaperScissors();
-        }
+	public class GameMaster : IRockPaperScissorsGame
+	{
+		public GameResult Play(string input)
+		{
+			Weapon computerWeapon = GetRandomWeapon();
+			Weapon playerWeapon;
 
-        public GameResult Play(string input)
-        {
-            switch (input.ToLower())
+			switch(input.ToLower()){
+				case "r":
+				case "rock":
+					playerWeapon = Weapon.Rock;
+					break;
+				case "p":
+				case "paper":
+					playerWeapon = Weapon.Paper;
+					break;
+				case "s":
+				case "scissors":
+					playerWeapon = Weapon.Scissors;
+					break;
+				default:
+					playerWeapon = Weapon.None;
+					break;
+			}
+
+			RockPaperScissorsRules game = new RockPaperScissorsRules();
+
+			var winningWeapon = game.Fight(playerWeapon, computerWeapon);
+
+            if(winningWeapon == Weapon.None)
             {
-                case "r":
-                case "rock":
-                    playerWeapon = Weapon.Rock;
-                    break;
-                case "p":
-                case "paper":
-                    playerWeapon = Weapon.Paper;
-                    break;
-                case "s":
-                case "scissors":
-                    playerWeapon = Weapon.Scissors;
-                    break;
-                default:
-                    playerWeapon = Weapon.None;
-                    break;
+                return GameResult.Draw;
+            } else if(winningWeapon == computerWeapon)
+            {
+                return GameResult.Lose;
+            } else
+            {
+                return GameResult.Win;
             }
+		}
 
-            Random randomizer = new Random();
-            int weaponNumber = randomizer.Next(1, 3);
-            Weapon computerWeapon = (Weapon)Enum.Parse(typeof(Weapon), weaponNumber.ToString());
-
-            var winner = game.Fight(playerWeapon, computerWeapon);
-
-            return GameResult.Draw;
-        }
-    }
+		private Weapon GetRandomWeapon()
+		{
+			Random randomizer = new Random();
+			int weaponNumber = randomizer.Next(0,3);
+			return (Weapon)Enum.Parse(typeof(Weapon), weaponNumber.ToString());
+		}
+	}
 }
