@@ -2,7 +2,7 @@ using System;
 
 namespace GamesLibrary
 {
-	public class RockPaperScissors
+	public class RockPaperScissorsRules
 	{
 		public Weapon Fight(Weapon weaponPlayer, Weapon weaponComputer)
 		{

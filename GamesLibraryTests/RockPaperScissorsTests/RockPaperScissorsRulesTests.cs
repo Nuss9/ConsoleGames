@@ -4,13 +4,18 @@ namespace GamesLibrary
 {
 	public class RockPaperScissorsTests
 	{
+        public RockPaperScissorsTests()
+        {
+            var subject = new RockPaperScissorsRules();
+        }
+
 		[Theory]
 		[InlineData(Weapon.Paper, Weapon.Paper)]
 		[InlineData(Weapon.Rock, Weapon.Rock)]
 		[InlineData(Weapon.Scissors, Weapon.Scissors)]
-		public void WhenWeaponFightAgainstItself_ItShouldReturnNone(Weapon playerWeapon, Weapon computerWeapon)
+		public void WhenPlayerWeaponIsSameAsComputerWeapon_ItShouldReturnDraw(Weapon playerWeapon, Weapon computerWeapon)
 		{
-			RockPaperScissors game = new RockPaperScissors();
+            RockPaperScissors game = new RockPaperScissors();
 			var expected = Weapon.None;
 			
 			var result = game.Fight(playerWeapon, computerWeapon);
