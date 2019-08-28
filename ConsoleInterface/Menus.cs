@@ -23,7 +23,7 @@ namespace ConsoleInterface
 			Console.WriteLine("* * * * * * * * * * * * * * * * * *");
 			Console.WriteLine("");
 		}
-		
+
 		public static string MenuChoice()
 		{
 			Console.WriteLine("Please choose one of the following games:");
@@ -31,7 +31,7 @@ namespace ConsoleInterface
 			Console.WriteLine(" 1 - Rock Paper Scissors");
 			Console.WriteLine(" 2 - Coming soon!");
 			Console.WriteLine(" 3 - Coming soon!");
-			
+
 			return Console.ReadLine();
 		}
 
@@ -40,7 +40,7 @@ namespace ConsoleInterface
 			Console.WriteLine("");
 			Console.Write("Unclear instructions.");
 			Thread.Sleep(1000);
-			Console.Write(" Please try again.");		
+			Console.Write(" Please try again.");
 		}
 	}
 }
