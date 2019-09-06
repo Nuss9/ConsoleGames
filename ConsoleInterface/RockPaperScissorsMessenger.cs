@@ -38,7 +38,7 @@ namespace ConsoleInterface
                 Console.WriteLine("Choose your weapon(r/p/s): ");
                 input = Console.ReadLine();
 
-                if(input == "quit")
+                if(input == "quit" || input == "q")
                 {
                     keepPlaying = false;
                     QuitGame();
