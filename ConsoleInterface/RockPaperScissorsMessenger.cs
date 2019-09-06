@@ -23,7 +23,7 @@ namespace ConsoleInterface
 			Console.WriteLine("       Enter 'quit' to return to the Main Menu.");
 			Console.WriteLine("");
 			Console.WriteLine("");
-			Thread.Sleep(2000);
+			Thread.Sleep(500);
         }
 
         public void Play()
@@ -35,15 +35,14 @@ namespace ConsoleInterface
             while (keepPlaying)
             {
                 AnnounceScore(gameMaster.GetScore());
-                Console.WriteLine("Choose your weapon(r/p/s): ");
+                Console.WriteLine("        Choose your weapon(r/p/s): ");
+				Console.Write("                  ");
                 input = Console.ReadLine();
 
-                if(input == "quit" || input == "q")
-                {
+                if(input == "quit" || input == "q") {
                     keepPlaying = false;
                     QuitGame();
-                } else
-                {
+                } else {
                     var result = gameMaster.Play(input);
                     DeclareWinner(result);
                 }
@@ -65,26 +64,26 @@ namespace ConsoleInterface
 		private void AnnounceScore((int playerScore, int computerScore) p)
 		{
 			Console.WriteLine("");
-			Console.WriteLine($"      Player Versus Computer");
-			Console.WriteLine($"         {p.playerScore}      :      {p.computerScore} ");
+			Console.WriteLine($"          Player Versus Computer");
+			Console.WriteLine($"             {p.playerScore}      :      {p.computerScore} ");
 			Console.WriteLine("");
 		}
 
-		private void DeclareWinner(object result)
+        private void DeclareWinner(object result)
         {
             switch (result.ToString())
             {
                 case "Win":
-                    Console.WriteLine("Congratulations! You won!");
+                    Console.WriteLine("         Congratulations! You won!");
                     break;
                 case "Lose":
-                    Console.WriteLine("Unfortunately you lose!");
+                    Console.WriteLine("          Unfortunately you lose!");
                     break;
                 case "Draw":
-                    Console.WriteLine("A draw!");
+                    Console.WriteLine("                 A draw!");
                     break;
                 default:
-                    Console.WriteLine("Please contact your administrator.");
+                    Console.WriteLine("     Please contact your administrator.");
                     break;
             }
         }
@@ -93,7 +92,7 @@ namespace ConsoleInterface
         {
             Console.WriteLine("");
             Console.WriteLine("");
-            Console.Write("Quitting game");
+            Console.Write("        Quitting game");
             Thread.Sleep(400);
             Console.WriteLine(".");
             Thread.Sleep(400);
