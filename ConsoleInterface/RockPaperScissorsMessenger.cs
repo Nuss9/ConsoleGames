@@ -47,8 +47,20 @@ namespace ConsoleInterface
                     var result = gameMaster.Play(input);
                     DeclareWinner(result);
                 }
+
+                Thread.Sleep(1000);
+				ClearLines(7);
             }
         }
+
+		private void ClearLines(int amount)
+		{
+			Console.SetCursorPosition(0, Console.CursorTop -1);
+			Console.Write(new String(' ', Console.BufferWidth));
+			Console.SetCursorPosition(0, Console.CursorTop -1);
+
+			if(--amount > 0) ClearLines(amount);
+		}
 
 		private void AnnounceScore((int playerScore, int computerScore) p)
 		{
