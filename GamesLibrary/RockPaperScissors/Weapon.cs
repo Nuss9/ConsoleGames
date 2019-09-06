@@ -1,4 +1,4 @@
-namespace GamesLibrary
+namespace GamesLibrary.RockPaperScissors
 {
 	public enum Weapon
 	{

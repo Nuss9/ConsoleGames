@@ -1,6 +1,4 @@
-using GamesLibrary.RockPaperScissors;
-
-namespace GamesLibrary
+namespace GamesLibrary.RockPaperScissors
 {
 	public class RockPaperScissorsRules
 	{

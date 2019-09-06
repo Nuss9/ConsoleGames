@@ -1,6 +1,7 @@
 using Xunit;
+using GamesLibrary.RockPaperScissors;
 
-namespace GamesLibrary
+namespace GamesLibraryTests.RockPaperScissorsTests
 {
 	public class RockPaperScissorsRulesTests
 	{
