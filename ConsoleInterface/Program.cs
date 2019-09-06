@@ -1,5 +1,4 @@
 ﻿using System;
-using GamesLibrary;
 
 namespace ConsoleInterface
 {
@@ -7,6 +6,7 @@ namespace ConsoleInterface
     {
         static void Main(string[] args)
         {
+			Console.Clear();
 			Menus.MainMenu();
             while(true){
                 string choice = Menus.MenuChoice();
