@@ -35,6 +35,7 @@ namespace ConsoleInterface
 
             while (keepPlaying)
             {
+                AnnounceScore(gameMaster.GetScore());
                 Console.WriteLine("Choose your weapon(r/p/s): ");
                 input = Console.ReadLine();
 
@@ -50,7 +51,15 @@ namespace ConsoleInterface
             }
         }
 
-        private void DeclareWinner(object result)
+		private void AnnounceScore((int playerScore, int computerScore) p)
+		{
+			Console.WriteLine("");
+			Console.WriteLine($"      Player Versus Computer");
+			Console.WriteLine($"         {p.playerScore}      :      {p.computerScore} ");
+			Console.WriteLine("");
+		}
+
+		private void DeclareWinner(object result)
         {
             switch (result.ToString())
             {

@@ -5,6 +5,9 @@ namespace GamesLibrary
 {
 	public class GameMaster : IRockPaperScissorsGame
 	{
+		private int PlayerScore { get; set; }
+		private int ComputerScore { get; set; }
+
 		public GameResult Play(string input)
 		{
 			Weapon computerWeapon = GetRandomWeapon();
@@ -17,10 +20,17 @@ namespace GamesLibrary
             if(winningWeapon == Weapon.None)  {
                 return GameResult.Draw;
             } else if(winningWeapon == computerWeapon) {
+				ComputerScore++;
                 return GameResult.Lose;
             } else {
+				PlayerScore++;
                 return GameResult.Win;
             }
+		}
+		
+		public (int, int) GetScore()
+		{
+			return (PlayerScore, ComputerScore);
 		}
 
 		private Weapon ConvertToWeapon(string input)
