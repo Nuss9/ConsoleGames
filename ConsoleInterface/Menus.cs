@@ -7,6 +7,7 @@ namespace ConsoleInterface
 	{
 		public static void MainMenu()
 		{
+			Console.Clear();
 			Console.WriteLine("       .-------.    ______");
 			Console.WriteLine("      /   o   /|   /\\     \\");
 			Console.WriteLine("     /_______/o|  /o \\  o  \\");
