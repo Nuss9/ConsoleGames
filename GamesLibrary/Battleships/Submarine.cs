@@ -10,6 +10,7 @@ namespace GamesLibrary.Battleships
 
 		public Submarine()
 		{
+			this.Coordinates = new List<Point>();
 			this.IsAfloat = true;
 		}
 	}
