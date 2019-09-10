@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GamesLibrary.Battleships
 {
@@ -30,9 +30,19 @@ namespace GamesLibrary.Battleships
 				ship.Location.Y < 1 ||
 				ship.Location.Y > this.Length ) {
 				return false;
+			} else if (LocationAlreadyTaken(ship)) {
+				return false;
 			} else {
 				return true;
 			}
+		}
+
+		private bool LocationAlreadyTaken(Ship ship)
+		{
+			return fleet.Any( s =>
+				s.Location.Y == ship.Location.Y &&
+				s.Location.X == ship.Location.X
+			);
 		}
 	}
 }

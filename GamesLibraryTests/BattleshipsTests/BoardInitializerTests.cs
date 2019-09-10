@@ -49,5 +49,20 @@ namespace GamesLibraryTests.BattleShipTests
 
 			Assert.Single(subject.Playingboard.Fleet);
 		}
+
+		[Fact]
+		public void WhenPlacingASecondShipOnTheFirst_ItShouldThrow()
+		{
+			Submarine ship = new Submarine {
+				Location = new Point {
+					X = 1,
+					Y = 1
+				}
+			};
+
+			subject.AddToPlayingboard(ship);
+			
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToPlayingboard(ship));
+		}
 	}
 }
