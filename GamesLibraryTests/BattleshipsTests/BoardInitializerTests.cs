@@ -13,9 +13,12 @@ namespace GamesLibraryTests.BattleShipTests
 		}
 
 		[Fact]
-		public void When_ItShould()
+		public void WhenInstantiating_ItShouldCreateA10By10Board()
 		{
-			
+			int expected = 10;
+
+			Assert.Equal(expected, this.subject.Playingboard.Width);
+			Assert.Equal(expected, this.subject.Playingboard.Length);
 		}
 	}
 }
