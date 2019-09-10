@@ -6,12 +6,12 @@ namespace GamesLibrary.Battleships
 
 		public BoardInitializer()
 		{
-			this.Playingboard = new Board();
+			Playingboard = new Board();
 		}
 
 		public void AddToPlayingboard (Ship ship)
 		{
-			this.Playingboard.AddToFleet(ship);
+			Playingboard.AddToFleet(ship);
 		}
 	}
 }

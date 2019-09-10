@@ -5,11 +5,15 @@ namespace GamesLibrary.Battleships
 {
 	public class Board
 	{
-		private List<Ship> fleet => new List<Ship>();
+		private List<Ship> fleet;
 		public int Width => 10;
 		public int Length => 10;
 		public IEnumerable<Ship> Fleet => fleet;
 
+		public Board()
+		{
+			fleet = new List<Ship>();
+		}
 		public void AddToFleet(Ship ship)
 		{
 			if(ValidatePosition(ship)) {
