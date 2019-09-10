@@ -1,16 +1,15 @@
-using System;
 using GamesLibrary.Battleships;
 using Xunit;
 
 namespace GamesLibraryTests.BattleShipTests
 {
-	public class BoardInitializerTests
+	public class BoardTests
 	{
-		public BoardInitializer subject { get; set; }
+		public Board subject { get; set; }
 
-		public BoardInitializerTests()
+		public BoardTests()
 		{
-			this.subject = new BoardInitializer();
+			this.subject = new Board();
 		}
 
 		[Fact]
@@ -18,8 +17,8 @@ namespace GamesLibraryTests.BattleShipTests
 		{
 			int expected = 10;
 
-			Assert.Equal(expected, this.subject.Playingboard.Width);
-			Assert.Equal(expected, this.subject.Playingboard.Length);
+			Assert.Equal(expected, this.subject.Width);
+			Assert.Equal(expected, this.subject.Length);
 		}
 
 		[Fact]
@@ -32,7 +31,7 @@ namespace GamesLibraryTests.BattleShipTests
 				}
 			};
 
-			Assert.Throws<InvalidShipLocationException>(() => subject.AddToPlayingboard(ship));
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
 		}
 
 		[Fact]
@@ -45,9 +44,9 @@ namespace GamesLibraryTests.BattleShipTests
 				}
 			};
 
-			subject.AddToPlayingboard(ship);
+			subject.AddToFleet(ship);
 
-			Assert.Single(subject.Playingboard.Fleet);
+			Assert.Single(subject.Fleet);
 		}
 
 		[Fact]
@@ -60,9 +59,9 @@ namespace GamesLibraryTests.BattleShipTests
 				}
 			};
 
-			subject.AddToPlayingboard(ship);
+			subject.AddToFleet(ship);
 			
-			Assert.Throws<InvalidShipLocationException>(() => subject.AddToPlayingboard(ship));
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
 		}
 	}
 }
