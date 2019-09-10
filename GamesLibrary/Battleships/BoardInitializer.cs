@@ -1,5 +1,3 @@
-using System;
-
 namespace GamesLibrary.Battleships
 {
 	public class BoardInitializer
@@ -9,6 +7,11 @@ namespace GamesLibrary.Battleships
 		public BoardInitializer()
 		{
 			this.Playingboard = new Board();
+		}
+
+		public void AddToPlayingboard (Ship ship)
+		{
+			this.Playingboard.AddToFleet(ship);
 		}
 	}
 }
