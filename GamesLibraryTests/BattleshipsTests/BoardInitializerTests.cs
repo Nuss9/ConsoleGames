@@ -21,13 +21,19 @@ namespace GamesLibraryTests.BattleShipTests
 			Assert.Equal(expected, this.subject.Length);
 		}
 
-		[Fact]
-		public void WhenPlacingAShipOffThePlayingboard_ItShouldThrow()
+		[Theory]
+		[InlineData(0, 0)]
+		[InlineData(0, 11)]
+		[InlineData(11, 0)]
+		[InlineData(11, 11)]
+		public void WhenPlacingAShipOffThePlayingboard_ItShouldThrow(int x, int y)
 		{
-			Submarine ship = new Submarine {
-				Location = new Point {
-					X = 0,
-					Y = 0
+			Ship ship = new Ship
+			{
+				Location = new Point
+				{
+					X = x,
+					Y = y
 				}
 			};
 
@@ -35,10 +41,12 @@ namespace GamesLibraryTests.BattleShipTests
 		}
 
 		[Fact]
-		public void WhenPlacingAShipLocationIsValid_ItShouldBeAddedToTheFleet()
+		public void WhenPlacingAShipOnThePlayingboard_ItShouldBeAddedToTheFleet()
 		{
-			Submarine ship = new Submarine {
-				Location = new Point {
+			Ship ship = new Ship
+			{
+				Location = new Point
+				{
 					X = 1,
 					Y = 1
 				}
@@ -52,23 +60,27 @@ namespace GamesLibraryTests.BattleShipTests
 		[Fact]
 		public void WhenPlacingASecondShipOnTheFirst_ItShouldThrow()
 		{
-			Submarine ship = new Submarine {
-				Location = new Point {
+			Ship ship = new Ship
+			{
+				Location = new Point
+				{
 					X = 1,
 					Y = 1
 				}
 			};
 
 			subject.AddToFleet(ship);
-			
+
 			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
 		}
 
 		[Fact]
 		public void WhenASecondShipIsPlacedNearTheFirst_ItShouldThrow()
 		{
-			Submarine ship1 = new Submarine {
-				Location = new Point {
+			Ship ship1 = new Ship
+			{
+				Location = new Point
+				{
 					X = 1,
 					Y = 1
 				}
@@ -76,13 +88,15 @@ namespace GamesLibraryTests.BattleShipTests
 
 			subject.AddToFleet(ship1);
 
-			Submarine ship2 = new Submarine {
-				Location = new Point {
+			Ship ship2 = new Ship
+			{
+				Location = new Point
+				{
 					X = 2,
 					Y = 2
 				}
 			};
-			
+
 			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship2));
 		}
 	}

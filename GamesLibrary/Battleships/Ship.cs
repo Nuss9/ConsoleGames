@@ -1,7 +1,7 @@
 namespace GamesLibrary.Battleships
 {
-	public abstract class Ship
+	public class Ship
 	{
-		public abstract Point Location { get; set; }
+		public Point Location { get; set; }
 	}
 }
