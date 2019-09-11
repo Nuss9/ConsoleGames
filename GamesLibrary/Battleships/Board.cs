@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,17 +33,50 @@ namespace GamesLibrary.Battleships
 				return false;
 			} else if (LocationAlreadyTaken(ship)) {
 				return false;
+			} else if (LocationIsInProximityOfExistingLocations(ship)) {
+				return false;
 			} else {
 				return true;
 			}
 		}
 
-		private bool LocationAlreadyTaken(Ship ship)
+		private bool LocationAlreadyTaken(Ship newShip)
 		{
-			return fleet.Any( s =>
-				s.Location.Y == ship.Location.Y &&
-				s.Location.X == ship.Location.X
+			return fleet.Any( ship =>
+				ship.Location.Y == newShip.Location.Y &&
+				ship.Location.X == newShip.Location.X
 			);
+		}
+
+		private bool LocationIsInProximityOfExistingLocations(Ship newShip)
+		{
+			List<Point> proximityCoordinates = new List<Point>();
+			List<Point> shipLocations = new List<Point>();
+
+			if(fleet.Count != 0){
+				foreach(Ship ship in Fleet) {
+					shipLocations.Add(ship.Location);
+				}
+
+				foreach(Point coordinate in shipLocations) {
+					proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y + 1});
+					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y + 1});
+					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y});
+					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y - 1});
+					proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y - 1});
+					proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y - 1});
+					proximityCoordinates.Add(new Point {X = coordinate.X - 1, 	Y = coordinate.Y});
+					proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y + 1});
+				}
+		
+				IEnumerable<Point> uniqueProximityCoordinates = proximityCoordinates.Distinct();
+
+				if(uniqueProximityCoordinates.Contains(newShip.Location)) {
+					return true;
+				}
+			}
+		
+			return false;
 		}
 	}
 }
