@@ -13,7 +13,7 @@ namespace GamesLibraryTests.BattleShipTests
 		}
 
 		[Fact]
-		public void WhenInstantiating_ItShouldCreateA10By10Board()
+		public void WhenInstantiatingBoard_ItShouldBe10By10()
 		{
 			int expected = 10;
 
