@@ -100,18 +100,5 @@ namespace GamesLibraryTests.BattleShipTests
 
 			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship2));
 		}
-
-		// [Fact]
-		// public void WhenPlacingAShipWithMoreThanOnePoint_TheyShouldBeAdjacent()
-		// {
-		// 	Ship ship = new Ship
-		// 	{
-		// 		Location = new List<Point>()
-		// 		{
-		// 			new Point { X = 3, Y = 3 },
-		// 			new Point { X = 3, Y = 4 }
-		// 		}
-		// 	};
-		// }
 	}
 }
