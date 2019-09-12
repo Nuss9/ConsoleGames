@@ -27,10 +27,7 @@ namespace GamesLibrary.Battleships
 
 		private bool ValidatePosition(Ship ship)
 		{
-			if( ship.Location.X < 1 ||
-				ship.Location.X > this.Width ||
-				ship.Location.Y < 1 ||
-				ship.Location.Y > this.Length ) {
+			if(IsShipLocationIfOffTheBoard(ship) ) {
 				return false;
 			} else if (LocationAlreadyTaken(ship)) {
 				return false;
@@ -39,6 +36,14 @@ namespace GamesLibrary.Battleships
 			} else {
 				return true;
 			}
+		}
+
+		public bool IsShipLocationIfOffTheBoard(Ship ship)
+		{
+				return ship.Location.X < 1 ||
+					ship.Location.X > this.Width ||
+					ship.Location.Y < 1 ||
+					ship.Location.Y > this.Length;
 		}
 
 		private bool LocationAlreadyTaken(Ship newShip)
