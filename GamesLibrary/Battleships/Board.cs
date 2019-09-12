@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,17 +39,23 @@ namespace GamesLibrary.Battleships
 
 		public bool IsShipLocationIfOffTheBoard(Ship ship)
 		{
-				return ship.Location.X < 1 ||
-					ship.Location.X > this.Width ||
-					ship.Location.Y < 1 ||
-					ship.Location.Y > this.Length;
+			foreach(Point coordinate in ship.Location) {
+				if(coordinate.X < 1 ||
+					coordinate.X > this.Width ||
+					coordinate.Y > 10 ||
+					coordinate.Y > this.Length) {
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		private bool LocationAlreadyTaken(Ship newShip)
 		{
 			return fleet.Any( ship =>
-				ship.Location.Y == newShip.Location.Y &&
-				ship.Location.X == newShip.Location.X
+				ship.Location == newShip.Location &&
+				ship.Location == newShip.Location
 			);
 		}
 
@@ -61,15 +66,19 @@ namespace GamesLibrary.Battleships
 
 			if(fleet.Count != 0){
 				foreach(Ship ship in Fleet) {
-					shipLocations.Add(ship.Location);
+					foreach(Point coordinate in ship.Location){
+						shipLocations.Add(coordinate);
+					}
 				}
 
 				foreach(Point coordinate in shipLocations) {
 					proximityCoordinates = GetPointsInProximity(coordinate);
 				}
 		
-				if(proximityCoordinates.Contains(newShip.Location)) {
-					return true;
+				foreach(Point coordinate in proximityCoordinates) {
+					if(newShip.Location.Contains(coordinate)) {
+						return true;
+					}
 				}
 			}
 		

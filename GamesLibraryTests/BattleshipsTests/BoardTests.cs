@@ -13,8 +13,8 @@ namespace GamesLibraryTests.BattleShipTests
 		public BoardTests()
 		{
 			this.subject = new Board();
-			this.shipAtOneOne = new Ship {Location = new Point { X = 1, Y = 1}};
-			this.shipAtTwoTwo = new Ship {Location = new Point { X = 2, Y = 2}};
+			this.shipAtOneOne = new Ship {Location = new List<Point> { new Point {X = 1, Y = 1}}};
+			this.shipAtTwoTwo = new Ship {Location = new List<Point> { new Point {X = 2, Y = 2}}};
 		}
 
 		[Fact]
@@ -35,12 +35,7 @@ namespace GamesLibraryTests.BattleShipTests
 		{
 			Ship ship = new Ship
 			{
-				Location = new Point
-				{
-					X = x,
-					Y = y
-				}
-			};
+				Location = new List<Point> { new Point { X = x,	Y = y}}};
 
 			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
 		}

@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+
 namespace GamesLibrary.Battleships
 {
 	public class Ship
 	{
-		public Point Location { get; set; }
+		public List<Point> Location { get; set; }
 	}
 }
