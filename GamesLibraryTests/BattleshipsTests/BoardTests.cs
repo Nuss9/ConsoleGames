@@ -7,10 +7,14 @@ namespace GamesLibraryTests.BattleShipTests
 	public class BoardTests
 	{
 		public Board subject { get; set; }
+		public Ship shipAtOneOne { get;}
+		public Ship shipAtTwoTwo { get;}
 
 		public BoardTests()
 		{
 			this.subject = new Board();
+			this.shipAtOneOne = new Ship {Location = new Point { X = 1, Y = 1}};
+			this.shipAtTwoTwo = new Ship {Location = new Point { X = 2, Y = 2}};
 		}
 
 		[Fact]
@@ -44,16 +48,7 @@ namespace GamesLibraryTests.BattleShipTests
 		[Fact]
 		public void WhenPlacingAShipOnThePlayingboard_ItShouldBeAddedToTheFleet()
 		{
-			Ship ship = new Ship
-			{
-				Location = new Point
-				{
-					X = 1,
-					Y = 1
-				}
-			};
-
-			subject.AddToFleet(ship);
+			subject.AddToFleet(shipAtOneOne);
 
 			Assert.Single(subject.Fleet);
 		}
@@ -61,44 +56,23 @@ namespace GamesLibraryTests.BattleShipTests
 		[Fact]
 		public void WhenPlacingASecondShipOnTheFirst_ItShouldThrow()
 		{
-			Ship ship = new Ship
-			{
-				Location = new Point
-				{
-					X = 1,
-					Y = 1
-				}
-			};
+			subject.AddToFleet(shipAtOneOne);
 
-			subject.AddToFleet(ship);
-
-			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(shipAtOneOne));
 		}
 
 		[Fact]
 		public void WhenASecondShipIsPlacedNearTheFirst_ItShouldThrow()
 		{
-			Ship ship1 = new Ship
-			{
-				Location = new Point
-				{
-					X = 1,
-					Y = 1
-				}
-			};
+			subject.AddToFleet(shipAtOneOne);
 
-			subject.AddToFleet(ship1);
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(shipAtTwoTwo));
+		}
+		
+		[Fact]
+		public void WhenPlacingAShipWithMoreThanOnePoint_TheyShouldBeAdjacent()
+		{
 
-			Ship ship2 = new Ship
-			{
-				Location = new Point
-				{
-					X = 2,
-					Y = 2
-				}
-			};
-
-			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship2));
 		}
 	}
 }
