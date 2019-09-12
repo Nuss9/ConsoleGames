@@ -56,7 +56,7 @@ namespace GamesLibrary.Battleships
 
 		private bool LocationIsInProximityOfExistingLocations(Ship newShip)
 		{
-			List<Point> proximityCoordinates = new List<Point>();
+			IEnumerable<Point> proximityCoordinates = new List<Point>();
 			List<Point> shipLocations = new List<Point>();
 
 			if(fleet.Count != 0){
@@ -65,24 +65,31 @@ namespace GamesLibrary.Battleships
 				}
 
 				foreach(Point coordinate in shipLocations) {
-					proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y + 1});
-					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y + 1});
-					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y});
-					proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y - 1});
-					proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y - 1});
-					proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y - 1});
-					proximityCoordinates.Add(new Point {X = coordinate.X - 1, 	Y = coordinate.Y});
-					proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y + 1});
+					proximityCoordinates = GetPointsInProximity(coordinate);
 				}
 		
-				IEnumerable<Point> uniqueProximityCoordinates = proximityCoordinates.Distinct();
-
-				if(uniqueProximityCoordinates.Contains(newShip.Location)) {
+				if(proximityCoordinates.Contains(newShip.Location)) {
 					return true;
 				}
 			}
 		
 			return false;
+		}
+
+		private IEnumerable<Point> GetPointsInProximity(Point coordinate)
+		{
+			List<Point> proximityCoordinates = new List<Point>();
+
+			proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y + 1});
+			proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y + 1});
+			proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y});
+			proximityCoordinates.Add(new Point {X = coordinate.X + 1, 	Y = coordinate.Y - 1});
+			proximityCoordinates.Add(new Point {X = coordinate.X, 		Y = coordinate.Y - 1});
+			proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y - 1});
+			proximityCoordinates.Add(new Point {X = coordinate.X - 1, 	Y = coordinate.Y});
+			proximityCoordinates.Add(new Point {X = coordinate.X -1, 	Y = coordinate.Y + 1});
+			
+			return proximityCoordinates.Distinct();
 		}
 	}
 }
