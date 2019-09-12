@@ -15,6 +15,7 @@ namespace GamesLibrary.Battleships
 		{
 			fleet = new List<Ship>();
 		}
+		
 		public void AddToFleet(Ship ship)
 		{
 			if(ValidatePosition(ship)) {
