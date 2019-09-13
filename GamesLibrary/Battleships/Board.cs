@@ -28,12 +28,72 @@ namespace GamesLibrary.Battleships
 		{
 			if(IsShipLocationIfOffTheBoard(ship) ) {
 				return false;
+			} else if (LocationExistsOfNonAdjacentPoints(ship)) {
+				return false;
 			} else if (LocationAlreadyTaken(ship)) {
 				return false;
 			} else if (LocationIsInProximityOfExistingLocations(ship)) {
 				return false;
 			} else {
 				return true;
+			}
+		}
+
+		private bool LocationExistsOfNonAdjacentPoints(Ship ship)
+		{
+			if(ship.Location.Count() == 1) {
+				return false;
+			}
+			
+			List<Point> locations = ship.Location;
+			Orientation orientation = GetOrientation(locations);
+
+			List<int> xNumbers = new List<int>();
+			List<int> yNumbers = new List<int>();
+
+			foreach(Point p in locations)
+			{
+				xNumbers.Add(p.X);
+				yNumbers.Add(p.Y);
+			}
+
+			if(orientation == Orientation.Horizontal) {
+				return !IsSequence(xNumbers);
+			} else if (orientation == Orientation.Vertical) {
+				return !IsSequence(yNumbers);
+			} else {
+				return true;
+			}
+		}
+
+		private bool IsSequence(List<int> numbers)
+		{
+			numbers.Sort();
+
+			for(int i = 0; i < numbers.Count(); i++) {
+				if(numbers[i] != numbers[i+1]) {
+					if(numbers[i] == numbers.Last()){
+						return true;
+					}
+					return false;
+				}
+			}
+			
+			// Should not be reached
+			return false;
+		}
+
+		private Orientation GetOrientation(List<Point> location)
+		{
+			var singleXValue = location[0].X;
+			var singleYValue = location[0].Y;
+
+			if(location.All(c => c.X == singleXValue)) {
+				return Orientation.Vertical;
+			} else if (location.All(c => c.Y == singleYValue)) {
+				return Orientation.Horizontal;
+			} else {
+				return Orientation.None;
 			}
 		}
 
