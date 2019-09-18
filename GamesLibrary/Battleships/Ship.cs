@@ -2,8 +2,15 @@ using System.Collections.Generic;
 
 namespace GamesLibrary.Battleships
 {
-	public class Ship
+	public abstract class Ship
 	{
-		public List<Point> Location { get; set; }
+		private readonly List<Point> location = new List<Point>();
+
+		protected Ship(IEnumerable<Point> location)
+		{
+			this.location.AddRange(location);
+		}
+
+		public IEnumerable<Point> Location => location;
 	}
 }
