@@ -29,6 +29,8 @@ namespace GamesLibrary.Battleships
 		{
 			if(IsShipLocationIfOffTheBoard(ship) ) {
 				return false;
+			} else if (!LocationMatchesShipLength(ship)) {
+				return false;
 			} else if (LocationExistsOfNonAdjacentPoints(ship)) {
 				return false;
 			} else if (LocationAlreadyTaken(ship)) {
@@ -38,6 +40,16 @@ namespace GamesLibrary.Battleships
 			} else {
 				return true;
 			}
+		}
+
+		private bool LocationMatchesShipLength(Ship ship)
+		{
+			if(ship is Destroyer){
+				if(ship.Location.Count() != 2) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		private bool LocationExistsOfNonAdjacentPoints(Ship ship)

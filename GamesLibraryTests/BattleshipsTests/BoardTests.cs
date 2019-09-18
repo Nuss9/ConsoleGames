@@ -71,5 +71,15 @@ namespace GamesLibraryTests.BattleShipTests
 			
 			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(ship));
 		}
+
+		[Fact]
+		public void WhenPlacingADestroyerShipOfNotTwoPoints_ItShouldThrow()
+		{
+			Ship destroyerOne = new Destroyer(new List<Point>{ new Point{ X = 1, Y = 1 }});
+			Ship destroyerThree = new Destroyer(new List<Point>{ new Point{ X = 1, Y = 1 }, new Point{ X = 2, Y = 1 }, new Point{X = 3, Y = 1}});
+
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(destroyerOne));
+			Assert.Throws<InvalidShipLocationException>(() => subject.AddToFleet(destroyerThree));
+		}
 	}
 }
