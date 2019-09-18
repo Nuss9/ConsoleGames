@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using GamesLibrary.Battleships;
 
 namespace GamesLibrary.Battleships
 {
