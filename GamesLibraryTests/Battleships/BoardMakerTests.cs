@@ -26,5 +26,14 @@ namespace GamesLibraryTests.Battleships
 			Assert.NotNull(result);
 			Assert.IsType<PlayingBoard>(result);
 		}
+
+		[Fact]
+		public void WhenExecuting_ItShouldDefineTheBoardBoundaries()
+		{
+			var expected = 10;
+
+			Assert.Equal(expected, Subject.BoardWidth);
+			Assert.Equal(expected, Subject.BoardHeight);
+		}
 	}
 }
